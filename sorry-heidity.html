@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>اعتذاراً منك 🥲🤍</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Cairo',sans-serif;
+
+    background:
+    radial-gradient(circle at top,#321313,#160909 50%,#070707);
+
+    color:white;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    position:relative;
+
+    font-synthesis:none;
+    text-rendering:optimizeLegibility;
+
+    user-select:none;
+
+    padding:60px 18px;
+}
+
+/* =====================================================
+   BACKGROUND PARTICLES
+===================================================== */
+
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-3;
+}
+
+.particle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    animation:float linear infinite;
+
+    opacity:0.7;
+}
+
+.fire-particle{
+
+    width:4px;
+    height:4px;
+
+    background:#ff7b39;
+
+    box-shadow:
+    0 0 12px #ff7b39,
+    0 0 20px #ff5e00;
+}
+
+.spark-particle{
+
+    width:2px;
+    height:2px;
+
+    background:#ffd59e;
+
+    box-shadow:
+    0 0 10px #ffd59e;
+}
+
+@keyframes float{
+
+    from{
+        transform:
+        translateY(110vh)
+        translateX(0px);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    to{
+
+        transform:
+        translateY(-120vh)
+        translateX(30px);
+
+        opacity:0;
+    }
+
+}
+
+/* =====================================================
+   MAIN WRAPPER
+===================================================== */
+
+.wrapper{
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    width:100%;
+    max-width:760px;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(16px);
+
+    border-radius:38px;
+
+    padding:55px 24px;
+
+    box-shadow:
+    0 0 60px rgba(255,90,20,0.07),
+    0 20px 70px rgba(0,0,0,0.45);
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* =====================================================
+   FIRE GLOW
+===================================================== */
+
+.glow{
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,90,20,0.18),
+    transparent 70%);
+
+    filter:blur(110px);
+
+    top:-220px;
+    left:-220px;
+
+    z-index:-1;
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.title{
+
+    font-size:2.9rem;
+
+    margin-bottom:45px;
+
+    font-weight:700;
+
+    line-height:1.8;
+
+    background:
+    linear-gradient(to right,#ffffff,#ffb58a);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 25px rgba(255,120,60,0.18);
+
+    animation:titleFloat 4s ease-in-out infinite;
+}
+
+.title-emoji{
+
+    -webkit-text-fill-color:initial !important;
+
+    background:none !important;
+
+    display:inline-block;
+
+    filter:
+    drop-shadow(0 0 8px rgba(255,255,255,0.25));
+}
+
+@keyframes titleFloat{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+}
+
+/* =====================================================
+   IMAGES
+===================================================== */
+
+.images{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:28px;
+}
+
+.image-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    transition:0.45s ease;
+
+    cursor:pointer;
+}
+
+.image-box:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.01);
+}
+
+.image-box::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(to top,
+    rgba(255,90,20,0.12),
+    transparent 40%);
+
+    opacity:0;
+
+    transition:0.4s ease;
+
+    z-index:2;
+}
+
+.image-box:hover::before{
+    opacity:1;
+}
+
+.image-box img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:30px;
+
+    pointer-events:none;
+
+    -webkit-user-drag:none;
+
+    box-shadow:
+    0 18px 50px rgba(0,0,0,0.42);
+}
+
+/* =====================================================
+   FIRE CLICK EFFECT
+===================================================== */
+
+.fire{
+
+    position:fixed;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    animation:fireAnim 1.4s forwards;
+
+    filter:
+    drop-shadow(0 0 12px rgba(255,120,50,0.8))
+    drop-shadow(0 0 25px rgba(255,80,0,0.6));
+}
+
+@keyframes fireAnim{
+
+    0%{
+
+        transform:
+        scale(0.4)
+        rotate(0deg);
+
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translateY(-130px)
+        scale(2.2)
+        rotate(25deg);
+
+        opacity:0;
+    }
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:40px;
+
+    color:rgba(255,255,255,0.82);
+
+    font-size:1.05rem;
+
+    line-height:2;
+
+    text-shadow:
+    0 0 18px rgba(255,120,50,0.12);
+}
+
+.footer-emoji{
+
+    -webkit-text-fill-color:initial !important;
+
+    background:none !important;
+
+    display:inline-block;
+
+    filter:
+    drop-shadow(0 0 10px rgba(255,255,255,0.18));
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:768px){
+
+    body{
+        padding:35px 14px;
+    }
+
+    .card{
+        padding:38px 18px;
+    }
+
+    .title{
+        font-size:2.1rem;
+        line-height:1.7;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- =====================================================
+   PARTICLES
+===================================================== -->
+
+<div class="particles" id="particles"></div>
+
+<!-- =====================================================
+   MAIN
+===================================================== -->
+
+<div class="wrapper">
+
+<div class="card">
+
+<div class="glow"></div>
+
+<!-- =====================================================
+   TITLE
+===================================================== -->
+
+<h1 class="title">
+
+اعتذاراً منك
+<span class="title-emoji">🥲🤍</span>
+
+</h1>
+
+<!-- =====================================================
+   IMAGES
+===================================================== -->
+
+<div class="images">
+
+<div class="image-box">
+
+<img
+draggable="false"
+src="https://i.postimg.cc/CLZ8Swc1/ef4cabe3-b903-4d67-a48f-18615a736585.jpg">
+
+</div>
+
+<div class="image-box">
+
+<img
+draggable="false"
+src="https://i.postimg.cc/026SP9VN/images.webp">
+
+</div>
+
+<div class="image-box">
+
+<img
+draggable="false"
+src="https://i.postimg.cc/657ZtBMt/Segment-20260604-224527625.png">
+
+</div>
+
+</div>
+
+<!-- =====================================================
+   FOOTER
+===================================================== -->
+
+<div class="footer">
+
+بحرقهم كلهم عشانك ياعيون
+<span class="footer-emoji">🐥🤍</span>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   PREVENT IMAGE SAVE
+===================================================== */
+
+document.addEventListener("contextmenu",(e)=>{
+
+    if(e.target.tagName==="IMG"){
+        e.preventDefault();
+    }
+
+});
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const particlesContainer=document.getElementById("particles");
+
+for(let i=0;i<45;i++){
+
+    const particle=document.createElement("div");
+
+    const type=Math.random()>0.35
+    ? "fire-particle"
+    : "spark-particle";
+
+    particle.classList.add("particle",type);
+
+    particle.style.left=Math.random()*100+"vw";
+
+    particle.style.animationDuration=
+    (7+Math.random()*8)+"s";
+
+    particle.style.animationDelay=
+    Math.random()*5+"s";
+
+    particle.style.opacity=Math.random();
+
+    particlesContainer.appendChild(particle);
+}
+
+/* =====================================================
+   BIG FIRE EFFECT
+===================================================== */
+
+document.addEventListener("click",(e)=>{
+
+    const icons=[
+        "🔥","🔥","🔥",
+        "✨","🧡"
+    ];
+
+    for(let i=0;i<12;i++){
+
+        const fire=document.createElement("div");
+
+        fire.classList.add("fire");
+
+        fire.innerHTML=
+        icons[Math.floor(Math.random()*icons.length)];
+
+        fire.style.left=
+        (e.clientX + (Math.random()*120-60))+"px";
+
+        fire.style.top=
+        (e.clientY + (Math.random()*120-60))+"px";
+
+        fire.style.fontSize=
+        (20+Math.random()*35)+"px";
+
+        document.body.appendChild(fire);
+
+        setTimeout(()=>{
+            fire.remove();
+        },1400);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
